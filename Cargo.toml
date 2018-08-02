@@ -40,6 +40,11 @@ test_headless = []  # used for testing headless display
 [patch.crates-io]
 glutin = { git = "https://github.com/tomaka/glutin.git", rev = "bda3741"}
 
+[target.'cfg(target_os = "android")'.dependencies]
+log = "0.4"
+android_logger = "0.5"
+jni = { version = "0.5", default-features = false }
+
 [dependencies.glutin]
 version = "0.17"
 features = []

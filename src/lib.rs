@@ -1277,3 +1277,38 @@ fn get_gl_error(ctxt: &mut context::CommandContext) -> Option<&'static str> {
         _ => Some("Unknown glGetError return value")
     }
 }
+
+const LOG_TAG : &str = "winterfell";
+
+#[macro_use] extern crate log;
+extern crate android_logger;
+use log::Level;
+use android_logger::Filter;
+
+#[cfg(target_os = "android")]
+#[allow(non_snake_case)]
+pub mod android {
+    extern crate jni;
+
+    use self::jni::objects::{JClass, JString};
+    use self::jni::sys::{jlong, jstring};
+    use self::jni::JNIEnv;
+    use super::*;
+
+    #[no_mangle]
+    pub unsafe extern "C" fn Java_com_example_vampire_opengl_Rust_init(
+        env: JNIEnv,
+        _: JClass,
+    ) -> jlong {
+        android_logger::init_once(Filter::default()
+            .with_min_level(Level::Trace));
+        trace!("{} android logger init .... ", LOG_TAG);
+
+        let display = Display::new().unwrap();
+        let mut target = display.draw();
+        target.clear_color(0.0, 0.0, 1.0, 1.0);
+        target.finish().unwrap();
+
+        0
+    }
+}
