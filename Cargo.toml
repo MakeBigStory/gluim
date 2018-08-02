@@ -28,11 +28,17 @@ exclude = ["doc", ".travis.yml", "circle.yml"]
 [badges]
 travis-ci = { repository = "glium/glium" }
 
+[lib]
+crate-type = ["staticlib", "cdylib"]
+
 [features]
 default = ["glutin"]
 icon_loading = ["glutin/icon_loading"]
 unstable = [] # used for benchmarks
 test_headless = []  # used for testing headless display
+
+[patch.crates-io]
+glutin = { git = "https://github.com/tomaka/glutin.git", rev = "bda3741"}
 
 [dependencies.glutin]
 version = "0.17"
@@ -44,6 +50,7 @@ optional = true
 lazy_static = "1.0"
 smallvec = "0.6"
 fnv = "1.0.5"
+opengles_rs = { git = "https://github.com/MakeBigStory/opengles-rs.git" }
 
 [build-dependencies]
 gl_generator = "0.9"
