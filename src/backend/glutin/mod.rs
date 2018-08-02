@@ -248,6 +248,7 @@ unsafe impl Backend for GlutinBackend {
             Ok(()) => Ok(()),
             Err(glutin::ContextError::IoError(e)) => panic!("Error while swapping buffers: {:?}", e),
             Err(glutin::ContextError::ContextLost) => Err(SwapBuffersError::ContextLost),
+            _ => Ok(()),
         }
     }
 
