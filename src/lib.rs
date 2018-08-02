@@ -100,7 +100,7 @@ result to the user.
 #[macro_use]
 extern crate lazy_static;
 
-extern crate backtrace;
+//extern crate backtrace;
 extern crate smallvec;
 extern crate fnv;
 

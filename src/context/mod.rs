@@ -1,7 +1,7 @@
 //! Contains everything related to the interface between glium and the OpenGL implementation.
 
 use gl;
-use backtrace;
+//use backtrace;
 
 use std::collections::HashMap;
 use std::mem;
@@ -849,26 +849,26 @@ fn default_debug_callback(_: debug::Source, ty: debug::MessageType, severity: de
                 message);
 
         let mut frame_id = 1;
-        backtrace::trace(|frame| {
-            let ip = frame.ip();
-            print!("\n{:>#4} - {:p}", frame_id, ip);
-
-            backtrace::resolve(ip, |symbol| {
-                let name = symbol.name()
-                                 .map(|n| n.as_str().unwrap_or("<not-utf8>"))
-                                 .unwrap_or("<unknown>");
-                let filename = symbol.filename()
-                                     .map(|p| p.to_str().unwrap_or("<not-utf8>"))
-                                     .unwrap_or("<unknown>");
-                let line = symbol.lineno().map(|l| l.to_string())
-                                          .unwrap_or_else(|| "??".to_owned());
-
-                print!("\n         {} at {}:{}", name, filename, line);
-            });
-
-            frame_id += 1;
-            true
-        });
+//        backtrace::trace(|frame| {
+//            let ip = frame.ip();
+//            print!("\n{:>#4} - {:p}", frame_id, ip);
+//
+//            backtrace::resolve(ip, |symbol| {
+//                let name = symbol.name()
+//                                 .map(|n| n.as_str().unwrap_or("<not-utf8>"))
+//                                 .unwrap_or("<unknown>");
+//                let filename = symbol.filename()
+//                                     .map(|p| p.to_str().unwrap_or("<not-utf8>"))
+//                                     .unwrap_or("<unknown>");
+//                let line = symbol.lineno().map(|l| l.to_string())
+//                                          .unwrap_or_else(|| "??".to_owned());
+//
+//                print!("\n         {} at {}:{}", name, filename, line);
+//            });
+//
+//            frame_id += 1;
+//            true
+//        });
 
         println!("\n");
     }

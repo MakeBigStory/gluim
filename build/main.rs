@@ -87,7 +87,7 @@ fn generate_gl_bindings<W>(dest: &mut W) where W: Write {
 
     let gles_registry = Registry::new(
         Api::Gles2,
-        (3, 2),
+        (3, 1),
         Profile::Compatibility,
         Fallbacks::None,
         vec![
